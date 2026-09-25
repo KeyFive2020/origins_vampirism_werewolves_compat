@@ -28,7 +28,7 @@ public class Config {
                 .comment("Permite que racas protegidas sejam infectadas (Sanguinare)")
                 .define("infectProtectedRaces", false);
             protectHumanRace = builder
-                .comment("Aplica efeitos protetivos (alho, wolfsbane) e bloqueia infeccao na raca humana")
+                .comment("Bloqueia infeccao (sanguinare) na raca humana")
                 .define("protectHumanRace", true);
             witherOnHumanDrink = builder
                 .comment("Aplica efeito Wither no vampiro ao sugar sangue de humanos")

@@ -14,6 +14,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import de.teamlapen.vampirism.api.VampirismAPI;
@@ -184,6 +185,9 @@ public class InfectionEventHandler {
             if (previousOrigin != null && !previousOrigin.equals(originId)) {
                 System.out.println("[OriginsVampCompat] Origem mudou de " + previousOrigin + " para " + originId);
                 removeFactionForOrigin(player, previousOrigin);
+                if (isCompatOrigin(originId) && ModList.get().isLoaded("pehkui")) {
+                    PehkuiCompat.resetPlayerScale(player);
+                }
                 FACTION_SET.put(uuid, false);
             }
             PLAYER_ORIGINS.put(uuid, originId);
@@ -256,28 +260,17 @@ public class InfectionEventHandler {
         return null;
     }
 
-    private static MobEffect cachedGarlic = null;
-    private static MobEffect cachedWolfsbane = null;
+    private static boolean isCompatOrigin(ResourceLocation originId) {
+        return VAMPIRE_ORIGIN.equals(originId)
+            || WEREWOLF_ORIGIN.equals(originId)
+            || HUNTER_ORIGIN.equals(originId)
+            || HUMAN_ORIGIN.equals(originId);
+    }
+
     private static MobEffect cachedSanguinare = null;
 
     private static void applyProtectiveEffects(Player player) {
         try {
-            if (cachedGarlic == null) {
-                cachedGarlic = ForgeRegistries.MOB_EFFECTS.getValue(
-                    ResourceLocation.tryParse("vampirism:garlic"));
-            }
-            if (cachedGarlic != null) {
-                player.addEffect(new MobEffectInstance(cachedGarlic, 200, 0, false, true, true));
-            }
-
-            if (cachedWolfsbane == null) {
-                cachedWolfsbane = ForgeRegistries.MOB_EFFECTS.getValue(
-                    ResourceLocation.tryParse("werewolves:wolfsbane"));
-            }
-            if (cachedWolfsbane != null) {
-                player.addEffect(new MobEffectInstance(cachedWolfsbane, 200, 0, false, true, true));
-            }
-
             if (cachedSanguinare == null) {
                 cachedSanguinare = ForgeRegistries.MOB_EFFECTS.getValue(
                     ResourceLocation.tryParse("vampirism:sanguinare"));

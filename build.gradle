@@ -138,8 +138,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // API do Vampirism
-    compileOnly fg.deobf("de.teamlapen.vampirism:Vampirism:1.20.1-1.10.15:api")
-    runtimeOnly fg.deobf("de.teamlapen.vampirism:Vampirism:1.20.1-1.10.15")
+    compileOnly fg.deobf("de.teamlapen.vampirism:Vampirism:1.20.1-1.10.16:api")
+    runtimeOnly fg.deobf("de.teamlapen.vampirism:Vampirism:1.20.1-1.10.16")
 
     // Werewolves (opcional - so carrega se instalado)
     runtimeOnly fg.deobf("curse.maven:werewolves-become-a-beast-417851:6722563")
@@ -155,7 +155,11 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:origins-forge-474438:5314209")
 
     // Strictly Origins (opcional - so carrega se instalado)
-    runtimeOnly fg.deobf("curse.maven:strictly-origins-649722:5422697")
+    runtimeOnly fg.deobf("curse.maven:strictly-origins-649722:8377757")
+
+    // Pehkui (opcional - reseta a escala ao entrar em uma origem deste mod)
+    compileOnly fg.deobf("curse.maven:pehkui-319596:5393101")
+    runtimeOnly fg.deobf("curse.maven:pehkui-319596:5393101")
 
     // Alternate Origin GUI via CurseMaven
     runtimeOnly fg.deobf("curse.maven:altorigingui-873788:5633649")
